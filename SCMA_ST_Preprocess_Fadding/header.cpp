@@ -233,9 +233,9 @@ void InitMapMatrix(MapMatrix& map, SubConstellMatrix& subConstell,
             break;
     }
 
-    cout<<"Nt: "<<Nt<<setw(20)<<"Nr: "<<Nr<<setw(20)<<"M: "<<M<<setw(20)<<"NLoop: "<<NLoop<<endl;   
-    outfile<<"Nt: "<<Nt<<setw(20)<<"Nr: "<<Nr<<setw(20)<<"M: "<<M<<setw(20)<<"NLoop: "<<NLoop<<endl;   
-
+    cout<<"Nt: "<<Nt<<setw(10)<<"Nr: "<<Nr<<setw(10)<<"M: "<<M<<setw(10)<<"J: "<<J<<setw(10)<<"NLoop: "<<NLoop<<endl;   
+    outfile<<"Nt: "<<Nt<<setw(10)<<"Nr: "<<Nr<<setw(10)<<"M: "<<M<<setw(10)<<"J: "<<J<<setw(10)<<"NLoop: "<<NLoop<<endl;   
+    
     cout<<"EbN0dB"<<setw(15)<<"BER"<<endl;
     outfile<<"EbN0dB"<<setw(15)<<"BER"<<endl;
 
@@ -287,8 +287,11 @@ void ChannelInitialize(int ebN0dB){
 
     double ebN0 = pow(10, (double)ebN0dB/10);
     double snr = 1.5 * ebN0;
-    double N0 = power / (snr*Nt);
+    double N0 = power*Nt / snr;
     N_Var = N0/2;
+    for(int nt = 0; nt < Nt; ++nt){
+        WeightedIdentityMatrix(nt, nt) = ComplexD(N_Var, 0);
+    }
     BER_TOTAL = 0;
     #ifdef DebugMode
         cout<<"N_Var: "<<N_Var<<endl;
@@ -338,14 +341,14 @@ void Modulation(CodeMatrix& code, ModuMatrix& modu){
 }
 
 
-void Mapper(ModuMatrix& modu, SymAfterMapMatrix* symaftermap, MapMatrix& map){
+void Mapper(ModuMatrix& modu, SymAfterMapMatrix* symAfterMap, MapMatrix& map){
 
     for(int nj = 0; nj < Nj; nj++){
         for(int nt = 0; nt < Nt; nt++){
             for(int m = 0; m < M; m++){
-                symaftermap[nj](nt, m) = p0;
+                symAfterMap[nj](nt, m) = p0;
                 for(int j = 0; j < J; j++){
-                    symaftermap[nj](nt, m) +=  map(j, m + nt * Nt) * modu(nj, j);
+                    symAfterMap[nj](nt, m) +=  map(j, m + nt * Nt) * modu(nj, j);
                 }
             }
         }
@@ -388,7 +391,7 @@ ComplexD AWGN(double nvar){
 }
 
 
-void Receiver(SymAfterFCMatrix symAfterFC[Nj][U], SymAfterBFMatrix* symafterbf, CSIMatrix* h,
+void Receiver(SymAfterFCMatrix symAfterFC[Nj][U], SymAfterBFMatrix* symAfterBF, CSIMatrix* h,
               SymAfterPPMatrix symAfterPP[Nj][U], PPMatrix* v, char* argv[]){
 
     CSIMatrix ConjTrans_H;
@@ -424,7 +427,7 @@ void Receiver(SymAfterFCMatrix symAfterFC[Nj][U], SymAfterBFMatrix* symafterbf, 
                 }
 
                 v[u] = Denomiator_H.inverse() * ConjTrans_H;
-                symAfterFC[nj][u] = h[u] * symafterbf[nj] + tmp;
+                symAfterFC[nj][u] = h[u] * symAfterBF[nj] + tmp;
                 symAfterPP[nj][u] = v[u] * symAfterFC[nj][u];
             }
         }

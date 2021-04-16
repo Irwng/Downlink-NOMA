@@ -20,27 +20,14 @@ int main(int argc, char * argv[]){
 
     time_t start = time(NULL);
     
-    if(argc < 4){
-        cout<<"1st argument: codebook codewords"<<endl;
-        cout<<"1: UDM-202,2,4,9"<<endl;
-        cout<<"2: UDM-42,1,2,4"<<endl;
-        cout<<"3: UDM-178,3,4,8"<<endl;
-        cout<<"4: UDM-1,1+i, 2i"<<endl;
-        cout<<"6: PhaseRotation-pi/4"<<endl;
-        cout<<"7: PhaseRotation-pi/5"<<endl;
-        cout<<"8: PhaseRotation-pi/6"<<endl;
+    if(argc < 3){
 
-        cout<<"2nd argument: codebook structures"<<endl;
-        cout<<"1: Latin"<<endl;
-        cout<<"2: CLST"<<endl;
-        cout<<"3: Orthogonal"<<endl;
-        cout<<"4: half-Latin"<<endl;
+        cout<<"1st argument: codebook structures"<<endl;
+        cout<<"1: NOS"<<endl;
+        cout<<"2: OS"<<endl;
+        cout<<"3: TS"<<endl;
         
-        cout<<"3rd argument: MPA or ML"<<endl;
-        cout<<"1: ML"<<endl;
-        cout<<"2: MPA"<<endl;
-
-        cout<<"4th argument: Preprocess"<<endl;
+        cout<<"2nd argument: Preprocess"<<endl;
         cout<<"1: ZF"<<endl;
         cout<<"2: MMSE"<<endl;
         cout<<"3: OSIC"<<endl;
@@ -49,32 +36,20 @@ int main(int argc, char * argv[]){
     }
     
     Initialize(argv);
-    InitMapMatrix(F, SubConstell, MasterConstell, argv);
+    InitMapMatrix(F, MasterConstell, argv);
     
     for(int EbN0dB = MinEbN0dB; EbN0dB <= MaxEbN0dB; EbN0dB = EbN0dB + Step){
         ChannelInitialize(EbN0dB);
         
         for(int loop = 1; loop <= NLoop; loop++){
             BitSource(Source);
-            ConvEncoder(Source, Code);
-            Modulation(Code, Modu);
+            Modulation(Source, Modu);
             Mapper(Modu, SymAfterMap, F);
             FadingChannel(H);
             Receiver(SymAfterFC, SymAfterMap, H, SymAfterPP, V, argv);
-            
-            switch (*argv[3]){
-                case '1':
-                    ML(SymAfterPP, SymAfterMPA, MasterConstell);
-                    break;
-                case '2':
-                    MPA(SymAfterPP, SymAfterMPA, SubConstell, argv);
-                    break;
-                default:
-                    break;
-            }
-
-            DirectDecoder(SymAfterMPA, DecodeBuff, Code);
-            Compare(DecodeBuff, Code);
+            ML(SymAfterPP, SymAfterMPA, MasterConstell);
+            DirectDecoder(SymAfterMPA, Decode, Source);
+            // Compare(Decode, Source);
         }
 
         BER = static_cast<double>(BER_TOTAL/(NLoop*U*NJ));
