@@ -40,7 +40,7 @@ typedef complex<double> ComplexD;
  **********************************/
 
 constexpr int U = 6;                              /* Number of users */
-constexpr int K = 8;                              /* Length of per user's bit stream,length of vector(b)=K*U */
+constexpr int K = 50;                              /* Length of per user's bit stream,length of vector(b)=K*U */
 constexpr int LenBit = U * K;                     /* number of bits of all users */
 constexpr double power = 1;
 constexpr int ReciRate = 3;                       /* reciprocal of the rate */
@@ -58,7 +58,7 @@ constexpr double PI = 3.141592653589793;
 constexpr int Du = 2;                             /* Number of resources connected to user */
 constexpr int Dr = 3;                             /* Number of users connected to resources */
 
-constexpr long NLoop = pow(10, 5);                /* number of simulation loops  */
+constexpr long NLoop = pow(10, 3);                /* number of simulation loops  */
 constexpr int MinEbN0dB = 0;
 constexpr int MaxEbN0dB = 30;
 constexpr int Step = 3;
@@ -121,7 +121,7 @@ typedef Matrix<double, U, NJ> SymAfterMPAMatrix;
 extern SymAfterMPAMatrix SymAfterMPA[Mod];
 
 /* codewords after decode */
-extern CodeMatrix DecodeBuff[U];
+extern CodeMatrix CodeEsti[U];
 
 /* final decoded results */
 typedef SourceMatrix DecodeMatrix;
@@ -276,37 +276,13 @@ void ML(SymAfterPPMatrix symAfterPP[Nj][U],
 
 
 /**************************************
- * description: hard convolutional decoder
- * date: 2020/12/23
- * input parameters: SymAfterPPMatrix symAfterMPA
- * output parameters: DecodeMatrix decode
- ***************************************/                        
-void ViterbiHardDecoder(SymAfterMPAMatrix& symAfterMPA, 
-                        SourceMatrix& source, 
-                        SourceMatrix* decode, 
-                        CodeMatrix& code);
-
-
-/**************************************
- * description: soft convolutional decoder
- * date: 2020/11/24
- * input parameters: SymAfterPPMatrix symAfterMPA
- * output parameters: DecodeMatrix decode
- ***************************************/
-void ViterbiSoftDecoder(SymAfterMPAMatrix& symAfterMPA, 
-                             SourceMatrix& source, 
-                             SourceMatrix* decode,
-                             CodeMatrix& code);
-
-
-/**************************************
  * description: no convolutional decoder
  * date: 2020/12/23
  * input parameters: SymAfterPPMatrix symAfterMPA
  * output parameters: DecodeMatrix decode
  ***************************************/                        
 void DirectDecoder(SymAfterMPAMatrix* symAfterMPA, 
-                   CodeMatrix* decodebuff,
+                   CodeMatrix* codeEsti,
                    CodeMatrix& code);
 
 
@@ -316,7 +292,7 @@ void DirectDecoder(SymAfterMPAMatrix* symAfterMPA,
  * input parameters: CodeMatrix* decodebuff, 
  * output parameters: CodeMatrix& code
  ***************************************/
-void Compare(CodeMatrix* decodebuff, 
+void Compare(CodeMatrix* codeEsti, 
              CodeMatrix& code);
 
 #endif //SCMA_ST_PREPROCESS_FADDING_HEADER_H

@@ -1,6 +1,6 @@
 /************************************************************
 Author: Wangyi     Version: C++11  Date: 2021/3/15
-Theme:  SCMA in AWGN channel
+Theme:  origin SCMA in AWGN channel
 Channel: fading channel
 Moduulaiton: BPSK
 User number(U): 6 

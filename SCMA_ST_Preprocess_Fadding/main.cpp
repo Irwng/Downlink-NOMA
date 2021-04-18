@@ -73,8 +73,8 @@ int main(int argc, char * argv[]){
                     break;
             }
 
-            DirectDecoder(SymAfterMPA, DecodeBuff, Code);
-            Compare(DecodeBuff, Code);
+            DirectDecoder(SymAfterMPA, CodeEsti, Code);
+            Compare(CodeEsti, Code);
         }
 
         BER = static_cast<double>(BER_TOTAL/(NLoop*U*NJ));

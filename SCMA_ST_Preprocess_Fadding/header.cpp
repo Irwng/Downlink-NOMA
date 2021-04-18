@@ -22,7 +22,7 @@ SymAfterBFMatrix SymAfterBF[Nj];                    /* receiving signals , Nj*Nr
 SymAfterFCMatrix SymAfterFC[Nj][U];
 SymAfterPPMatrix SymAfterPP[Nj][U];                 /* receiving signals after postprocessing, Nj*Nr*M */
 SymAfterMPAMatrix SymAfterMPA[Mod];
-CodeMatrix DecodeBuff[U];
+CodeMatrix CodeEsti[U];
 DecodeMatrix Decode[U];  
 
 ComplexD p1;
@@ -435,22 +435,22 @@ void Receiver(SymAfterFCMatrix symAfterFC[Nj][U], SymAfterBFMatrix* symAfterBF, 
 }
 
 
-void DirectDecoder(SymAfterMPAMatrix* symAfterMPA, CodeMatrix* decodebuff, 
+void DirectDecoder(SymAfterMPAMatrix* symAfterMPA, CodeMatrix* codeEsti, 
                    CodeMatrix& code){
     
     for(int u = 0; u < U; u++){        
         for(int nj = 0; nj < NJ; nj++){
-            decodebuff[u](nj) = symAfterMPA[1](u,nj) > symAfterMPA[0](u,nj) ? 1:0;
+            codeEsti[u](nj) = symAfterMPA[1](u,nj) > symAfterMPA[0](u,nj) ? 1:0;
         }
     }
 }
 
 
-void Compare(CodeMatrix* decodebuff, CodeMatrix& code){
+void Compare(CodeMatrix* codeEsti, CodeMatrix& code){
 
     for(int u = 0; u < U; u++){
         for(int nj = 0; nj < NJ; nj++){
-            if(decodebuff[u](nj) != code(nj)) BER_TOTAL++;
+            if(codeEsti[u](nj) != code(nj)) BER_TOTAL++;
         }
     }
 }

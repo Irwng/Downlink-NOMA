@@ -1,5 +1,5 @@
 .....................................................
-SCMA_ST_AWGN
+SCMA_ST_Fadding
 ML
 ZF
 PhaseRotation-pi/5
@@ -24,7 +24,7 @@ EbN0dB            BER
 30         0.000340278
 time(s): 160
 .....................................................
-SCMA_ST_AWGN
+SCMA_ST_Fadding
 ML
 ZF
 PhaseRotation-pi/5
@@ -49,7 +49,7 @@ EbN0dB            BER
 30         0.000165926
 time(s): 165
 .....................................................
-SCMA_ST_AWGN
+SCMA_ST_Fadding
 ML
 MMSE
 PhaseRotation-pi/5
@@ -93,3 +93,23 @@ EbN0dB            BER
 27          0.00160987
 30         0.000772106
 time(s): 919
+.....................................................
+SCMA_ST_Fadding
+ML
+ZF
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB            BER
+0            0.239828
+3            0.175939
+6            0.116158
+9           0.0691161
+12           0.0370506
+15            0.020812
+18           0.0105974
+21              0.0049
+24          0.00279333
+27           0.0016437
+30         0.000448704
+time(s): 59
