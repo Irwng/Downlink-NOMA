@@ -79,6 +79,7 @@ void InitMapMatrix(MapMatrix& map, SymAfterMapMatrix* masterConstell,
                    char* argv[]){
     
     double weight;
+
 #ifdef CompareOfStructure
     /* initialize the mapping matrix's codewords */
     switch(*argv[1]){
@@ -108,12 +109,12 @@ void InitMapMatrix(MapMatrix& map, SymAfterMapMatrix* masterConstell,
             cout<<"Overlapping section(OS)"<<endl;
             outfile<<"Overlapping section(OS)"<<endl;
 
-            weight = sqrt(16);
+            weight = sqrt(26);
             p1 = ComplexD(1/weight, 0/weight);
-            p2 = ComplexD(0/weight, 2/weight);
-            p3 = ComplexD(1/weight, 1/weight);
-            p4 = ComplexD(2/weight, 0/weight);
-            p5 = ComplexD(2/weight, 1/weight);
+            p2 = ComplexD(0/weight, 1/weight);
+            p3 = ComplexD(2/weight, 0/weight);
+            p4 = ComplexD(0/weight, 2/weight);
+            p5 = ComplexD(4/weight, 0/weight);
 
             /*   Nt= 0 Nt= 1  */
             map<<p1,p0,p0,p0,
@@ -131,11 +132,11 @@ void InitMapMatrix(MapMatrix& map, SymAfterMapMatrix* masterConstell,
             cout<<"Tailbiting section(TS)"<<endl;
             outfile<<"Tailbiting section(TS)"<<endl;
 
-            weight = sqrt(11);
+            weight = sqrt(10);
             p1 = ComplexD(1/weight, 0/weight);
-            p2 = ComplexD(0/weight, 2/weight);
-            p3 = ComplexD(1/weight, 1/weight);
-            p4 = ComplexD(2/weight, 0/weight);
+            p2 = ComplexD(0/weight, 1/weight);
+            p3 = ComplexD(2/weight, 0/weight);
+            p4 = ComplexD(0/weight, 2/weight);
 
             /*   Nt= 0 Nt= 1  */
             map<<p1,p0,p0,p3,
@@ -168,10 +169,10 @@ void InitMapMatrix(MapMatrix& map, SymAfterMapMatrix* masterConstell,
             cout<<"Overlapping section(OS)"<<endl;
             outfile<<"Overlapping section(OS)"<<endl;
 
-            weight = sqrt(7);
+            weight = sqrt(6);
             p1 = ComplexD(1/weight, 0/weight);
-            p2 = ComplexD(1/weight, 1/weight);
-            p3 = ComplexD(0/weight, 2/weight);
+            p2 = ComplexD(0/weight, 1/weight);
+            p3 = ComplexD(2/weight, 0/weight);
 
             /*   Nt= 0 Nt= 1  */
             map<<p1,p0,p0,p0,
@@ -187,10 +188,10 @@ void InitMapMatrix(MapMatrix& map, SymAfterMapMatrix* masterConstell,
             cout<<"Tailbiting section(TS)"<<endl;
             outfile<<"Tailbiting section(TS)"<<endl;
 
-            weight = sqrt(7);
+            weight = sqrt(6);
             p1 = ComplexD(1/weight, 0/weight);
-            p2 = ComplexD(1/weight, 1/weight);
-            p3 = ComplexD(0/weight, 2/weight);
+            p2 = ComplexD(0/weight, 1/weight);
+            p3 = ComplexD(2/weight, 1/weight);
 
             /*   Nt= 0 Nt= 1  */
             map<<p1,p0,p1,p0,
@@ -215,7 +216,7 @@ void InitMapMatrix(MapMatrix& map, SymAfterMapMatrix* masterConstell,
             cout<<"Non-overlapping section(NOS)"<<endl;
             outfile<<"Non-overlapping section(NOS)"<<endl;
 
-            weight = sqrt(11);
+            weight = sqrt(10);
             p1 = ComplexD(1/weight, 0/weight);
             p2 = ComplexD(0/weight, 2/weight);
             p3 = ComplexD(1/weight, 1/weight);
@@ -238,12 +239,12 @@ void InitMapMatrix(MapMatrix& map, SymAfterMapMatrix* masterConstell,
             cout<<"Overlapping section(OS)"<<endl;
             outfile<<"Overlapping section(OS)"<<endl;
 
-            weight = sqrt(16);
+            weight = sqrt(26);
             p1 = ComplexD(1/weight, 0/weight);
-            p2 = ComplexD(0/weight, 2/weight);
-            p3 = ComplexD(1/weight, 1/weight);
-            p4 = ComplexD(2/weight, 0/weight);
-            p5 = ComplexD(2/weight, 1/weight);
+            p2 = ComplexD(0/weight, 1/weight);
+            p3 = ComplexD(2/weight, 0/weight);
+            p4 = ComplexD(0/weight, 2/weight);
+            p5 = ComplexD(4/weight, 0/weight);
             
             /*   Nt= 0 Nt= 1  */
             map<<p1,p0,p0,p0,

@@ -55,18 +55,42 @@ void InitMapMatrix(MapMatrix& map, SubConstellMatrix& subConstell,
             p0,p0,p0,p2;
 #endif
 
+#ifdef NOS2
+    /* J = 8, NOS */
+    cout<<"Non-overlapping section(NOS):M=1"<<endl;
+    outfile1<<"Non-overlapping section(NOS):M=1"<<endl;
+    outfile2<<"Non-overlapping section(NOS):M=1"<<endl;
+    
+    weight = sqrt(10);
+    p1 = ComplexD(1/weight, 0/weight);
+    p2 = ComplexD(0/weight, 1/weight);
+    p3 = ComplexD(0/weight, 2/weight);
+    p4 = ComplexD(2/weight, 0/weight);
+
+    /*   Nt= 0 Nt= 1  */
+    map<<p1,p0,p0,p0,
+         p2,p0,p0,p0,
+         p3,p0,p0,p0,
+         p4,p0,p0,p0,
+         p0,p0,p1,p0,
+         p0,p0,p2,p0,
+         p0,p0,p3,p0,
+         p0,p0,p4,p0;
+#endif
+
+
 #ifdef OS
     /* J = 8, OS */
     cout<<"Overlapping section(OS)"<<endl;
     outfile1<<"Overlapping section(OS)"<<endl;
     outfile2<<"Overlapping section(OS)"<<endl;
     
-    weight = sqrt(16);
+    weight = sqrt(26);
     p1 = ComplexD(1/weight, 0/weight);
-    p2 = ComplexD(1/weight, 1/weight);
+    p2 = ComplexD(0/weight, 1/weight);
     p3 = ComplexD(0/weight, 2/weight);
     p4 = ComplexD(2/weight, 0/weight);
-    p5 = ComplexD(2/weight, 1/weight);
+    p5 = ComplexD(4/weight, 0/weight);
 
     /*   Nt= 0 Nt= 1  */
     map<<p1,p0,p0,p0,
@@ -85,9 +109,9 @@ void InitMapMatrix(MapMatrix& map, SubConstellMatrix& subConstell,
     outfile1<<"Tailbiting section(TS)"<<endl;
     outfile2<<"Tailbiting section(TS)"<<endl;
     
-    weight = sqrt(11);
+    weight = sqrt(10);
     p1 = ComplexD(1/weight, 0/weight);
-    p2 = ComplexD(1/weight, 1/weight);
+    p2 = ComplexD(0/weight, 1/weight);
     p3 = ComplexD(0/weight, 2/weight);
     p4 = ComplexD(2/weight, 0/weight);
 
@@ -102,6 +126,53 @@ void InitMapMatrix(MapMatrix& map, SubConstellMatrix& subConstell,
             p0,p0,p4,p2;
 #endif
     
+#ifdef OS2
+    /* J = 8, OS */
+    cout<<"Overlapping section(OS)"<<endl;
+    outfile1<<"Overlapping section(OS)"<<endl;
+    outfile2<<"Overlapping section(OS)"<<endl;
+    
+    weight = sqrt(26);
+    p1 = ComplexD(1/weight, 0/weight);
+    p2 = ComplexD(0/weight, 1/weight);
+    p3 = ComplexD(2/weight, 0/weight);
+    p4 = ComplexD(0/weight, 2/weight);
+    p5 = ComplexD(4/weight, 0/weight);
+
+    /*   Nt= 0 Nt= 1  */
+    map<<p1,p0,p0,p0,
+         p2,p0,p0,p0,
+         p3,p0,p0,p0,
+         p4,p0,p1,p0,
+         p5,p0,p2,p0,
+         p0,p0,p3,p0,
+         p0,p0,p4,p0,
+         p0,p0,p5,p0;
+#endif
+
+#ifdef OS3
+    /* J = 8, OS */
+    cout<<"Overlapping section(OS)"<<endl;
+    outfile1<<"Overlapping section(OS)"<<endl;
+    outfile2<<"Overlapping section(OS)"<<endl;
+    
+    weight = sqrt(6);
+    p1 = ComplexD(1/weight, 0/weight);
+    p2 = ComplexD(0/weight, 1/weight);
+    p3 = ComplexD(0/weight, 2/weight);
+
+    /*   Nt= 0 Nt= 1  */
+    map<<p1,p0,p0,p0,
+            p2,p1,p0,p0,
+            p3,p2,p1,p0,
+            p0,p3,p2,p1,
+            p0,p0,p3,p2,
+            p0,p0,p0,p3,
+            p0,p0,p0,p0,
+            p0,p0,p0,p0;
+#endif
+
+
     /* initialize the subconstellation */
     int a,b;
     double subMsg[Spoint][Dr] = {0.0};

@@ -20,7 +20,7 @@ int main(int argc, char * argv[]){
 
     time_t start = time(NULL);
     
-    if(argc < 4){
+    if(argc < 5){
         cout<<"1st argument: codebook codewords"<<endl;
         cout<<"1: UDM-202,2,4,9"<<endl;
         cout<<"2: UDM-42,1,2,4"<<endl;
@@ -36,14 +36,13 @@ int main(int argc, char * argv[]){
         cout<<"3: Orthogonal"<<endl;
         cout<<"4: half-Latin"<<endl;
         
-        cout<<"3rd argument: MPA or ML"<<endl;
-        cout<<"1: ML"<<endl;
-        cout<<"2: MPA"<<endl;
-
-        cout<<"4th argument: Preprocess"<<endl;
+        cout<<"3rd argument: Process"<<endl;
         cout<<"1: ZF"<<endl;
         cout<<"2: MMSE"<<endl;
-        cout<<"3: OSIC"<<endl;
+        
+        cout<<"4rd argument: OSIC"<<endl;
+        cout<<"1: SINR"<<endl;
+        cout<<"2: SNR"<<endl;
           
         return 0;
     }
@@ -60,26 +59,30 @@ int main(int argc, char * argv[]){
             Modulation(Code, Modu);
             Mapper(Modu, SymAfterMap, F);
             FadingChannel(H);
-            Receiver(SymAfterFC, SymAfterMap, H, SymAfterPP, V, argv);
+            #ifdef OSIC
+                Receiver_OSIC(SymAfterFC, SymAfterMap, H, SymAfterPP, V, SubConstell, argv);
+            #else
+                Receiver(SymAfterFC, SymAfterMap, H, SymAfterPP, V, argv);
+            #endif
             
-            switch (*argv[3]){
-                case '1':
-                    ML(SymAfterPP, SymAfterMPA, MasterConstell);
-                    break;
-                case '2':
-                    MPA(SymAfterPP, SymAfterMPA, SubConstell, argv);
-                    break;
-                default:
-                    break;
-            }
+            #ifdef LL
+                MLLL(SymAfterPP, SymAfterMPA, MasterConstell);
+                ViterbiSoftDecoderLL(SymAfterMPA, SourceEsti, CodeEsti);
+            #else
+                ML(SymAfterPP, SymAfterMPA, MasterConstell);
+                ViterbiSoftDecoder(SymAfterMPA, SourceEsti, CodeEsti);
+            #endif
 
-            DirectDecoder(SymAfterMPA, CodeEsti, Code);
-            Compare(CodeEsti, Code);
+            Compare(CodeEsti, Code, SourceEsti, Source);
+            /* process bar, one # means 5% */
+            if(loop*20 % NLoop == 0) cout<<"#"<<flush;
+            if(loop == NLoop) cout<<endl;
         }
 
-        BER = static_cast<double>(BER_TOTAL/(NLoop*U*NJ));
-        cout<<EbN0dB<<setw(20)<<BER<<endl;
-        outfile<<EbN0dB<<setw(20)<<BER<<endl;
+        BER_Nocode = static_cast<double>(BER_TOTAL_Nocode/NUM_Nocode);
+        BER_Code = static_cast<double>(BER_TOTAL_Code/NUM_Code);
+        cout<<EbN0dB<<setw(20)<<BER_Nocode<<setw(20)<<BER_Code<<endl;
+        outfile<<EbN0dB<<setw(20)<<BER_Nocode<<setw(20)<<BER_Code<<endl;
         cout<<"time(s): "<<time(NULL) - start<<endl;
     }
 

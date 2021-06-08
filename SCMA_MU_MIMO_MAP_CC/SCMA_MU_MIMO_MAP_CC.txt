@@ -1,0 +1,212 @@
+.....................................................
+SCMA_MU_MIMO_MAP_CC
+Length of bits: 6              Rate: 3             NLoop: 1000000
+Without Convolution Code
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0               0.210114
+2               0.172387
+4               0.133757
+6              0.0973229
+8              0.0668441
+10               0.043341
+12              0.0269729
+14              0.0162713
+16             0.00964101
+18             0.00568809
+20             0.00339147
+22             0.00203034
+24             0.00123649
+26            0.000755843
+28            0.000465972
+30            0.000290509
+time(s): 837
+.....................................................
+SCMA_MU_MIMO_MAP_CC
+Length of bits: 144              Rate: 3             NLoop: 1000
+With Convolution Code
+Soft Decoder based on probability
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0               0.204874
+2               0.150403
+4               0.103765
+6              0.0638032
+8              0.0391991
+10              0.0199248
+12              0.0110949
+14             0.00537153
+16             0.00240162
+18             0.00130324
+20            0.000478009
+22            0.000175926
+24            0.000107639
+26             2.5463e-05
+28            1.27315e-05
+30            1.62037e-05
+time(s): 22
+.....................................................
+SCMA_MU_MIMO_MAP_CC
+Length of bits: 144              Rate: 3             NLoop: 1000
+Convolution Code & soft Viterbi decoder: rate=1/3, block length=432
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0               0.251156
+2               0.181669
+4               0.118329
+6              0.0720822
+8              0.0405706
+10              0.0217106
+12              0.0121435
+14             0.00485764
+16              0.0021713
+18            0.000850694
+20            0.000377315
+22            0.000244213
+24            0.000116898
+26            4.62963e-06
+28            4.62963e-06
+30            1.15741e-06
+time(s): 21
+.....................................................
+SCMA_MU_MIMO_MAP_CC
+Length of bits: 144              Rate: 2             NLoop: 1000
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=288
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0               0.287706
+2               0.218613
+4               0.153265
+6              0.0977049
+8              0.0596134
+10              0.0322072
+12              0.0171343
+14             0.00772685
+16             0.00368287
+18              0.0016331
+20            0.000936343
+22            0.000465278
+24            0.000366898
+26            6.71296e-05
+28            3.24074e-05
+30            3.47222e-05
+time(s): 14
+.....................................................
+SCMA_MU_MIMO_MAP_CC
+Length of bits: 300              Rate: 2             NLoop: 1000
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0               0.287005
+2               0.221198
+4               0.151699
+6               0.100426
+8               0.058905
+10              0.0310039
+12              0.0167633
+14             0.00807778
+16             0.00355278
+18             0.00165333
+20            0.000817222
+22            0.000343333
+24            0.000129444
+26            0.000161111
+28            4.72222e-05
+30                  7e-05
+time(s): 30
+.....................................................
+SCMA_MU_MIMO_MAP_CC
+Length of bits: 300              Rate: 2             NLoop: 10000
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+ML
+Latin
+PhaseRotation
+FaddingChannel
+Nt: 2      Nr: 1       M: 2       J: 6
+EbN0dB            BER
+0               0.290603
+2               0.220898
+4                0.15437
+6              0.0991795
+8              0.0585007
+10              0.0324386
+12               0.016435
+14             0.00811817
+16              0.0039045
+18              0.0018245
+20            0.000797667
+22            0.000424111
+24            0.000197056
+26               8.35e-05
+28            6.31111e-05
+30            3.96111e-05
+time(s): 293
+.....................................................
+SCMA_MU_MIMO_MAP_CC
+Length of bits: 300              Rate: 3             NLoop: 10000
+Convolution Code & soft Viterbi decoder: rate=1/3, block length=900
+ML
+Latin
+PhaseRotation
+FaddingChannel
+Nt: 2      Nr: 1       M: 2       J: 6
+EbN0dB            BER
+0               0.205165
+2               0.149928
+4               0.101694
+6              0.0647759
+8              0.0387864
+10              0.0208732
+12              0.0107193
+14              0.0052735
+16             0.00245789
+18             0.00109594
+20            0.000480333
+22            0.000172944
+24               0.000102
+26            3.86111e-05
+28            1.21111e-05
+30            7.11111e-06
+time(s): 411
+.....................................................
+SCMA_MU_MIMO_MAP_CC
+Length of bits: 300              Rate: 3             NLoop: 10000
+Convolution Code & soft Viterbi decoder: rate=1/3, block length=900
+ML
+Latin
+PhaseRotation
+FaddingChannel
+Nt: 2      Nr: 1       M: 2       J: 6
+EbN0dB            BER
+0               0.252113
+2               0.180427
+4               0.118585
+6              0.0724856
+8              0.0396344
+10              0.0208458
+12              0.0108922
+14              0.0049585
+16             0.00213806
+18             0.00105744
+20            0.000425667
+22            0.000164167
+24            7.73889e-05
+26            2.72222e-05
+28            1.23333e-05
+30            5.27778e-06
+time(s): 429

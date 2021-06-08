@@ -5,6 +5,7 @@
         "bitset": "cpp",
         "iostream": "cpp",
         "iomanip": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "cmath": "cpp"
     }
 }

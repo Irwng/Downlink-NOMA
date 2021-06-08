@@ -74,6 +74,10 @@ int main(int argc, char * argv[]){
         BER = static_cast<double>(BER_TOTAL/(NLoop*U*NJ));
         cout<<EbN0dB<<setw(20)<<BER<<endl;
         outfile<<EbN0dB<<setw(20)<<BER<<endl;
+
+        // SymAfterMapExp /= static_cast<double>(NLoop*Nj);
+        // cout<<"SymAfterMapExp: "<<endl<<SymAfterMapExp<<endl;
+
         cout<<"time(s): "<<time(NULL) - start<<endl;
     }
 

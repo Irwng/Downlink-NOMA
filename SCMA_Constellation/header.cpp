@@ -307,7 +307,15 @@ void Codewords(SubConstellMatrix subConstell, SymAfterMapMatrix* masterConstell)
 
     cout<<"MasterConstell weight: "<<tmpweight2/static_cast<double>(Mpoint)<<endl;
     outfile2<<"MasterConstell weight: "<<tmpweight2/static_cast<double>(Mpoint)<<endl;
-    
+
+    SymAfterMapMatrix expweight;
+    for(int mpoint = 0; mpoint < Mpoint; ++mpoint){
+        expweight += (masterConstell[mpoint].conjugate().transpose()) * masterConstell[mpoint];
+    }
+
+    cout<<"MasterConstell exp: "<<expweight/static_cast<double>(Mpoint)<<endl;
+    outfile2<<"MasterConstell exp: "<<expweight/static_cast<double>(Mpoint)<<endl;
+
     /* calculate the minimum Euclidean distance */
     double distance2[Mpoint][Mpoint];
     for(auto &a : distance2){

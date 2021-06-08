@@ -1,0 +1,245 @@
+.....................................................
+SCMA_ST_Fadding
+ML-LL
+MMSE
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+PhaseRotation-pi/5
+Latin
+EbN0dB          BER_Nocode            BER_Code
+0            0.237979            0.265802
+5            0.164882           0.0982689
+10           0.0819519             0.02298
+15           0.0300356          0.00478778
+20          0.00990694          0.00127333
+25             0.00317         0.000334444
+30         0.000981389         0.000111111
+time(s): 86
+.....................................................
+SCMA_ST_Fadding_Detection：f[i] = exp(-d[i])
+ML
+MMSE
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.242868            0.269739
+5            0.149215           0.0795633
+10            0.074065           0.0138333
+15           0.0301739          0.00259444
+20           0.0107175         0.000609444
+25           0.0035475         0.000167778
+30          0.00118278         4.94444e-05
+time(s): 35
+.....................................................
+SCMA_ST_Fadding_Detection(发生溢出)：f[i] = exp(-d[i] / N_Var);
+ML
+MMSE
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.238602            0.266184
+5            0.164593           0.0980644
+10             0.08149           0.0228294
+15           0.0297233           0.0167772
+20          0.00983222           0.0982889
+25          0.00325083            0.118179
+30          0.00315944            0.139823
+time(s): 28
+.....................................................
+SCMA_ST_Fadding_Detection
+ML
+MMSE
+NoCode, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.227512                   0
+5            0.116707                   0
+10           0.0458806                   0
+15           0.0153161                   0
+20          0.00507306                   0
+25          0.00159278                   0
+30         0.000477778                   0
+time(s): 31
+.....................................................
+SCMA_ST_Fadding_Detection
+ML-LL
+MMSE
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.235593            0.268244
+5            0.150509           0.0812433
+10           0.0784297           0.0203778
+15           0.0299217          0.00469611
+20          0.00989056          0.00121833
+25          0.00305056         0.000338333
+30          0.00103222         0.000127778
+time(s): 106
+.....................................................
+SCMA_ST_Fadding_Detection
+ML-LL
+MMSE
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.236524             0.26583
+5            0.149268             0.07991
+10           0.0732069             0.01627
+15           0.0283144          0.00403389
+20          0.00975083            0.001105
+25          0.00315583         0.000381111
+30          0.00103528             0.00012
+time(s): 100
+.....................................................
+SCMA_ST_Fadding_Detection
+ML-LL
+MMSE
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.243102            0.268573
+5            0.149171           0.0797767
+10           0.0736775           0.0135922
+15           0.0302894             0.00263
+20           0.0106983         0.000636111
+25          0.00354139         0.000161667
+30          0.00112833         5.22222e-05
+time(s): 112
+.....................................................
+SCMA_ST_Fadding_Detection:不加N_Var
+ML-LL
+ZF
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.296789            0.402251
+3             0.23829            0.311745
+6            0.176164            0.192299
+9            0.118654           0.0936722
+12           0.0736922           0.0404378
+15           0.0422303           0.0169428
+18             0.02298          0.00713167
+21           0.0121461            0.003315
+24          0.00627111             0.00155
+27          0.00320806         0.000779444
+30          0.00159806             0.00036
+time(s): 171
+.....................................................
+SCMA_ST_Fadding_Detection:加N_Var
+ML-LL
+ZF
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.295748            0.401339
+3            0.238418            0.309451
+6            0.175739            0.187953
+9            0.116038           0.0899083
+12           0.0691869           0.0373294
+15           0.0377261           0.0147883
+18           0.0198442          0.00627944
+21           0.0100097          0.00272278
+24          0.00523722          0.00131611
+27          0.00258028         0.000578889
+30             0.00132         0.000301111
+time(s): 157
+.....................................................
+SCMA_ST_Fadding_Detection
+ML-LL
+MMSE
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.238761            0.267019
+3            0.193949            0.153342
+6            0.148152           0.0764256
+9           0.0969636           0.0316789
+12           0.0558267           0.0121089
+15           0.0300169            0.004895
+18           0.0155169          0.00200611
+21          0.00790417         0.000945556
+24          0.00395806         0.000462778
+27            0.002035         0.000233889
+30         0.000933333         0.000103333
+time(s): 127
+.....................................................
+SCMA_ST_Fadding_Detection
+ML-LL
+ZF
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.238459            0.309636
+3            0.175852            0.188577
+6             0.11621           0.0898861
+9           0.0684139              0.0365
+12             0.03771           0.0149256
+15           0.0198256          0.00612667
+18           0.0102206          0.00275444
+21          0.00517944          0.00126611
+24          0.00256639         0.000633333
+27          0.00128528         0.000299444
+30             0.00067         0.000155556
+time(s): 106
+.....................................................
+SCMA_ST_Fadding_Detection
+ML-LL
+ZF
+NoCode, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.241304                   0
+3            0.177245                   0
+6            0.115706                   0
+9           0.0688403                   0
+12           0.0374181                   0
+15           0.0198817                   0
+18           0.0100336                   0
+21          0.00518861                   0
+24          0.00264194                   0
+27          0.00133056                   0
+30         0.000643611                   0
+time(s): 45
+.....................................................
+SCMA_ST_Fadding_Detection
+ML-LL
+ZF
+Convolution Code & soft Viterbi decoder: rate=1/2, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 1000
+EbN0dB          BER_Nocode            BER_Code
+0            0.295451            0.402349
+3            0.238361            0.309632
+6            0.176308            0.189316
+9            0.115746           0.0892272
+12           0.0686678           0.0368206
+15           0.0377197           0.0145694
+18           0.0199067          0.00625944
+21           0.0100089          0.00275944
+24          0.00514556          0.00130167
+27          0.00261667         0.000637778
+30          0.00125083         0.000277778
+time(s): 159

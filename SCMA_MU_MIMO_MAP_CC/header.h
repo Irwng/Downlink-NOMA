@@ -3,8 +3,8 @@ Author:   wangyi     Version : C++11  Date: 2020/10/27
 Description: include the declaration of constants、variables、functions，
              and the definition of new type
 ************************************************************************/
-#ifndef SCMA_ST_PREPROCESS_FADDING_HEADER_H
-#define SCMA_ST_PREPROCESS_FADDING_HEADER_H
+#ifndef SCMA_MU_MIMO_MAP_CC_HEADER_H
+#define SCMA_MU_MIMO_MAP_CC_HEADER_H
 
 #include <iostream>
 #include <cmath>
@@ -31,82 +31,94 @@ typedef complex<double> ComplexD;
 // #define DebugMode
 #define MonteCarlo
 
-/* code or not */
-#define NoCode
-// #define ConvCode
+/* iterate or not */
+// #define IterMode
+#define NoiterMode
 
-#define OSIC
-// #define Linear
+/* code of not */
+// #define NoCode
+#define ConvCode
 
-/* log-likelihood or not */
-#define LL
-// #define Exp
+/* MPA or ML */
+// #define MPAMode
+#define MLMode
+
+/* mapping matrix structure: Latin or CLST */
+#define Latin
+// #define CLST
+
+/* mapping matrix codewords: UDM or PhaseRotation */
+// #define UDM
+#define PhaseRotation
+
+/* channel */
+#define FaddingChannel
+// #define AWGNMode
+
+/* viterbi decoder */
+#define Soft_Prob
+// #define Hard
 
 /**********************************
  * basic constant model parameters
  **********************************/
 
 constexpr int U = 6;                              /* Number of users */
-constexpr int K = 50;                             /* Length of per user's bit stream,length of vector(b)=K*U */
+#ifdef NoCode
+    constexpr int K = 1;                          /* Length of per user's bit stream,length of vector(b)=K*U */
+#else
+    constexpr int K = 50;
+#endif
 constexpr int LenBit = U * K;                     /* number of bits of all users */
-constexpr int ReciRate = 2;                       /* reciprocal of the rate */
+constexpr int ReciRate = 3;                       /* reciprocal of the rate */
 constexpr int NODE = 4;
 constexpr int Route = NODE;                       /* number of the routes to keep in viterbi decoder */
-constexpr int NJ = LenBit * ReciRate;             /* number of coded bits, J*Nj = K*U*ReciRate one block per transmission  */
+constexpr int NJ = LenBit * ReciRate;             /* number of coded bits, J*Nj = K*U*ReciRate one block per transmissi  on  */
 constexpr int J = 6;                              /* bits per block, length of vector(c) = J*Nj */
 constexpr int Nj = NJ / J;                        /* number of blocks,J*Nj = K*U one block per transmission  */
-constexpr int L = 1;                              /* time slots per channel changing  */
-constexpr int Nj_L = Nj/L;                        /* channel number poer block */
 
 constexpr int M = 2;                              /* Number of time slots resources */
 constexpr int Nt = 2;                             /* number of antennas at transmitter */
-constexpr int Nr = 2;                             /* number of antennas at recevier */
-constexpr int Mod = 2;				  /* BPSK modulation order */
+constexpr int Nr = 1;                             /* number of antennas at recevier */
+constexpr int Mod = 2;				              /* BPSK modulation order */
+constexpr int Mpoint = 64;                        /* Master-constellation Points */
+constexpr int Spoint = 8;                         /* Sub-constellation Points */
 constexpr double PI = 3.141592653589793;
 constexpr int Du = 2;                             /* Number of resources connected to user */
 constexpr int Dr = 3;                             /* Number of users connected to resources */
-constexpr int Mpoint = 64;                        /* Master-constellation Points */
-constexpr int Spoint = pow(2, Dr);                         /* Sub-constellation Points */
+/* -745.13~709.78 */
+constexpr double Alpha = 745;                     /* Max exponent keep the exp(-alpha)!=0 */
+constexpr double Beta = 709;                      /* Max exponent keep the exp(alpha)!=INF */
+// constexpr double varepsilon = pow(10, -10);
 
-constexpr double power = 1;
-
-#ifdef DebugMode
-    constexpr int MinEbN0dB = 30;
-    constexpr long NLoop = pow(10, 0);            /* number of simulation loops  */
-    constexpr int MaxEbN0dB = MinEbN0dB;
+#ifdef IterMode
+    constexpr int Iter = 1;
 #else
-    constexpr int MinEbN0dB = 0;
-    constexpr long NLoop = pow(10, 4);            /* number of simulation loops  */
-    constexpr int MaxEbN0dB = 30;           
-#endif//DebugMode
-constexpr int Step = 3;
+    constexpr int Iter = 0;
+#endif//IterMode
 
-constexpr double NUM_Nocode = NLoop*NJ*U;
-constexpr double NUM_Code = NLoop*LenBit*U;
-
-/*************************************
- * basic global variable declaration
- *************************************/
-
-/* codewords */
-constexpr ComplexD p0(0, 0);
-extern ComplexD p1;
-extern ComplexD p2;
-extern ComplexD p3;
-
-extern double N_Var;                      /* variance of Noise*/
-extern double BER_TOTAL_Nocode;           /* total number of error bits without code */
-extern double BER_Nocode;                 /* BER without code */
-extern double BER_TOTAL_Code;                  /* total number of error bits with code */
-extern double BER_Code;                        /* BER with code */
-extern fstream outfile;
+/*UDM or PhaseRotation*/
+#ifdef UDM
+    constexpr double weight = sqrt(42);
+    constexpr ComplexD p0(0, 0);
+    constexpr ComplexD p1(1/weight, 4/weight);
+    constexpr ComplexD p2(4/weight, 1/weight);
+    constexpr ComplexD p3(2/weight, 2/weight);
+#else
+    constexpr double weight = sqrt(3);
+    constexpr double RF = PI/5;
+    constexpr ComplexD p0(0, 0);
+    constexpr ComplexD p1(cos(0*RF)/weight, sin(0*RF)/weight);
+    constexpr ComplexD p2(cos(1*RF)/weight, sin(1*RF)/weight);
+    constexpr ComplexD p3(cos(2*RF)/weight, sin(2*RF)/weight);
+#endif
 
 /***********************************************************
  * basic type defination and golbal variables in matrix type
  ***********************************************************/
 
 /* sub-constelltion point */
-typedef Matrix<ComplexD, Nt*M, Spoint> SubConstellMatrix;
+typedef Matrix<ComplexD, Nr*M, Spoint> SubConstellMatrix;
 extern SubConstellMatrix SubConstell;
 
 /* source codewords */
@@ -130,9 +142,10 @@ typedef Matrix<ComplexD, Nt, M> SymAfterMapMatrix;
 extern SymAfterMapMatrix SymAfterMap[Nj];
 extern SymAfterMapMatrix MasterConstell[Mpoint];
 
-/* channel parameters , U*Nt*Nr */
+
+/* channel parameters , U*Nr*Nt */
 typedef Matrix<ComplexD, Nr, Nt> CSIMatrix;
-extern CSIMatrix H[U][Nj];
+extern CSIMatrix H[U];
 
 /* MMSE assistance matrix */
 extern CSIMatrix WeightedIdentityMatrix;
@@ -140,7 +153,6 @@ extern CSIMatrix WeightedIdentityMatrix;
 /* postprocessing matrix, Nj*Nr*M */
 typedef Matrix<ComplexD, Nt, Nr> PPMatrix;
 extern PPMatrix V[U];
-extern PPMatrix Q;
 
 /* signals after Beamforming, Nj*Nt*M */
 typedef SymAfterMapMatrix SymAfterBFMatrix;
@@ -155,25 +167,37 @@ extern SymAfterFCMatrix SymAfterFC[Nj][U];
 typedef Matrix<ComplexD, Nt, M> SymAfterPPMatrix; 
 extern SymAfterPPMatrix SymAfterPP[Nj][U];
 
-/* signals after MPA, Nj*U*Nr*M */
+/* signals after MPA, Mod*U*NJ */
 typedef Matrix<double, U, NJ> SymAfterMPAMatrix;
 extern SymAfterMPAMatrix SymAfterMPA[Mod];
 
 /* codewords after decode */
-extern CodeMatrix CodeEsti[U];
+extern CodeMatrix DecodeBuff[U];
 
 /* final decoded results */
-extern SourceMatrix SourceEsti[U];
+typedef SourceMatrix DecodeMatrix;
+extern DecodeMatrix Decode[U];
+
+/*************************************
+ * basic global variable declaration
+ *************************************/
+
+extern double N_Var;                      /* variance of Noise*/
+extern double MaxExponent;                /* Max exponent keep the exp(-alpha/N_var)!=0 */
+extern double MaxExponentUpper;           /* Max exponent keep the exp(alpha)!=INF */
+extern double BER_TOTAL;                  /* total number of error bits*/
+extern double BER;                        /* total number of error bits*/
+extern fstream outfile;
 
 /***********************************************
- * basic functions declaration
+ * basic functions declarations
  ***********************************************/
 
 /**************************************
  * description: normalize the output
  * date: 2020/12/16
  ***************************************/
-void Initialize(char* argv[]);
+void NormalIO();
 
 /**************************************
  * description: add AAWGN noise
@@ -201,8 +225,7 @@ ComplexD operator-(ComplexD comp, int b);
  ***************************************/
 void InitMapMatrix(MapMatrix& map, 
                    SubConstellMatrix& subConstell,
-                   SymAfterMapMatrix* masterConstell,
-                   char* argv[]);
+                   SymAfterMapMatrix* masterConstell);
 
 
 /**************************************
@@ -226,8 +249,6 @@ void BitSource(SourceMatrix& source);
 /**************************************
  * description: convolutional code
  * date: 2020/9/24
- * input parameters: the source bits(Source[U])
- * output parameters: convolutional codes(C[J*Nj])
  ***************************************/
 void ConvEncoder(SourceMatrix& source, CodeMatrix& code);
 
@@ -235,8 +256,6 @@ void ConvEncoder(SourceMatrix& source, CodeMatrix& code);
 /**************************************
  * description: Modulation
  * date: 2020/10/18
- * input parameters: CodeMatrix& code
- * output parameters: ModuMatrix& modu
  ***************************************/
 void Modulation(CodeMatrix& code, ModuMatrix& modu);
 
@@ -244,98 +263,122 @@ void Modulation(CodeMatrix& code, ModuMatrix& modu);
 /**************************************
  * description: mapping the codewords based on the codebooks
  * date: 2020/8/12
- * input parameters: codewords array
- * output parameters: map_symbols array
  ***************************************/
 void Mapper(ModuMatrix& modu, 
-            SymAfterMapMatrix* symAfterMap, 
+            SymAfterMapMatrix* symaftermap, 
             MapMatrix& f);
 
 
 /**************************************
  * description: flat-fading channel
  * date: 2020/8/16
- * input parameters: transmitting signals
- * output parameters: receiving signals pointer
  ***************************************/
-void FadingChannel(CSIMatrix H[U][Nj]);
+void FadingChannel(CSIMatrix* h);
+
+
+/**************************************
+ * description: Beamforming
+ * date: 2020/9/20
+ ***************************************/
+void Beamforming(CSIMatrix* h, 
+                 PPMatrix* v, 
+                 SymAfterMapMatrix* symaftermap);
 
 
 /**************************************
  * description: receiving signals
  * date: 2020/8/22
- * input parameters: SymAfterBFMatrix* symafterbf
- * output parameters: SymAfterPPMatrix symAfterPP[Nj][U]
  ***************************************/
 void Receiver(SymAfterFCMatrix symAfterFC[Nj][U], 
-              SymAfterBFMatrix* symAfterBF, 
-              CSIMatrix h[U][Nj],
-              SymAfterPPMatrix symAfterPP[Nj][U], 
-              PPMatrix* v, 
-              char* argv[]);
-void Receiver_OSIC(SymAfterFCMatrix symAfterFC[Nj][U], 
-                   SymAfterBFMatrix* symAfterBF,
-                   CSIMatrix h[U][Nj],
-                   SymAfterPPMatrix symAfterPP[Nj][U],
-                   PPMatrix* v,
-                   SubConstellMatrix& subConstell, 
-                   char* argv[]);
+              SymAfterBFMatrix* symafterbf, 
+              CSIMatrix* h);
+
 
 /**************************************
  * description: decode the receiving signals
  * date: 2020/11/8
- * input parameters: SymAfterPPMatrix symAfterPP[Nj][U]
- * output parameters: SymAfterMPAMatrix& symAfterMPA
  ***************************************/
 void MPA(SymAfterPPMatrix symAfterPP[Nj][U], 
-         SymAfterMPAMatrix* symAfterMPA, 
-         SubConstellMatrix& subConstell, 
-         char *argv[]);
+         SymAfterMPAMatrix& symAfterMPA, 
+         SubConstellMatrix& subConstell);
 
 
 /**************************************
  * description: decode the receiving signals
  * date: 2020/12/8
- * input parameters: SymAfterPPMatrix symAfterPP[Nj][U]
- * output parameters: SymAfterMPAMatrix& symAfterMPA
  ***************************************/
-void ML(SymAfterPPMatrix symAfterPP[Nj][U], 
+void ML(SymAfterFCMatrix symAfterFC[Nj][U], 
         SymAfterMPAMatrix* symAfterMPA, 
-        SymAfterMapMatrix* masterConstell);
-void MLLL(SymAfterPPMatrix symAfterPP[Nj][U], 
-        SymAfterMPAMatrix* symAfterMPA, 
-        SymAfterMapMatrix* masterConstell);
+        SymAfterMapMatrix* masterConstell, 
+        CSIMatrix* h, 
+        MapMatrix& map);
+
 
 /**************************************
  * description: soft convolutional decoder
  * date: 2020/11/24
- * input parameters: SymAfterPPMatrix symAfterMPA
- * output parameters: DecodeMatrix decode
  ***************************************/
+void ViterbiSoftDecoder_Prob(SymAfterMPAMatrix* symAfterMPA, 
+                             SourceMatrix& source, 
+                             SourceMatrix* decode,
+                             CodeMatrix& code);
+
 void ViterbiSoftDecoder(SymAfterMPAMatrix* symAfterMPA, 
-                        SourceMatrix* sourceEsti,
-                        CodeMatrix* codeEsti);
-void ViterbiSoftDecoderLL(SymAfterMPAMatrix* symAfterMPA, 
-                          SourceMatrix* sourceEsti,
-                          CodeMatrix* codeEsti);
+                             SourceMatrix& source, 
+                             SourceMatrix* decode,
+                             CodeMatrix& code);
+
+/**************************************
+ * description: hard convolutional decoder
+ * date: 2020/12/23
+ ***************************************/                        
+void ViterbiHardDecoder(SymAfterMPAMatrix* symAfterMPA, 
+                        SourceMatrix& source, 
+                        SourceMatrix* decode, 
+                        CodeMatrix& code);
+
+
+/**************************************
+ * description: no convolutional decoder
+ * date: 2020/12/23
+ ***************************************/                        
+void DirectDecoder(SymAfterMPAMatrix* symAfterMPA, 
+                   CodeMatrix* decodebuff,
+                   CodeMatrix& code);
 
 
 /**************************************
  * description: Compare
  * date: 2020/12/01
- * input parameters: CodeMatrix* decodebuff, 
- * output parameters: CodeMatrix& code
  ***************************************/
-void Compare(CodeMatrix* codeEsti, 
+void Compare(CodeMatrix* decodebuff, 
              CodeMatrix& code, 
-             SourceMatrix* sourceEsti, 
-             SourceMatrix& source);
+             SourceMatrix& source, 
+             SourceMatrix* decode);
 
 
 /**************************************
- * description: simplify the prob calcualtion
- * date: 2021/05/28
+ * description: IterationHelper
+ * date: 2021/03/01
  ***************************************/
-double fmax(vector<double>& seq);
+void IterationHelper(CodeMatrix* decodebuff, SourceMatrix* decode, 
+                     SymAfterFCMatrix symAfterFC[Nj][U], CSIMatrix* h,
+                     SymAfterPPMatrix symAfterPP[Nj][U]);
 
-#endif //SCMA_ST_PREPROCESS_FADDING_HEADER_H
+
+/**************************************
+ * description: IterationHelper-ML
+ * date: 2021/03/07
+ ***************************************/
+void ML_Iter(SymAfterPPMatrix symAfterPP[Nj][U], 
+             SymAfterMPAMatrix* symAfterMPA, 
+             SymAfterMapMatrix* masterConstell);
+
+
+/**************************************
+ * description: do Svd transform for the CSIMatrix
+ * date: 2020/10/21
+ ***************************************/
+void Svd();
+
+#endif //SCMA_MU_MIMO_MAP_CC_HEADER_H

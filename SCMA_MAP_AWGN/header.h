@@ -66,9 +66,14 @@ constexpr int Spoint = 8;                         /* Sub-constellation Points */
 constexpr double PI = 3.141592653589793;
 constexpr int Du = 2;                             /* Number of resources connected to user */
 constexpr int Dr = 3;                             /* Number of users connected to resources */
+#ifdef DebugMode
+        constexpr long NLoop = pow(10, 0);          /* number of simulation loops  */
+        constexpr int minEbN0dB = 10;
+#else
+        constexpr long NLoop = pow(10, 5);          /* number of simulation loops  */
+        constexpr int minEbN0dB = 0;
+#endif
 
-constexpr long NLoop = pow(10, 5);          /* number of simulation loops  */
-constexpr int minEbN0dB = 0;
 constexpr int maxEbN0dB = 10;
 constexpr int step = 1;
 
@@ -99,6 +104,7 @@ extern MapMatrix F;
 /* signals after mapping, Nj*Nt*M */
 typedef Matrix<ComplexD, Nt, M> SymAfterMapMatrix;
 extern SymAfterMapMatrix SymAfterMap[Nj];
+extern SymAfterMapMatrix SymAfterMapExp;
 extern SymAfterMapMatrix MasterConstell[Mpoint];
 
 /* channel parameters , U*Nt*Nr */

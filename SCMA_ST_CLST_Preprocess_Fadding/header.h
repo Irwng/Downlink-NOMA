@@ -33,8 +33,8 @@ typedef complex<double> ComplexD;
 
 /* Comparison */
 // #define CompareOfStructure
-#define CompareOfBlock
-// #define CompareOfTime
+// #define CompareOfBlock
+#define CompareOfTime
 
 /**********************************
  * basic constant model parameters

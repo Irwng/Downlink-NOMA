@@ -1,0 +1,225 @@
+.....................................................
+ToverR_Viterbi_v4
+Length of bits: 6              Rate: 3             NLoop: 100000
+Without Convolution Code
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0               0.214379
+2               0.175477
+4               0.135556
+6              0.0987085
+8              0.0676731
+10              0.0438417
+12              0.0270117
+14               0.016376
+16             0.00974296
+18             0.00576602
+20              0.0034012
+22             0.00202583
+24             0.00125185
+26            0.000753981
+28            0.000475185
+30            0.000295741
+time(s): 79
+.....................................................
+ToverR_Viterbi_v4
+Length of bits: 6              Rate: 3             NLoop: 1000000
+Without Convolution Code
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0               0.214353
+2               0.175496
+4               0.135857
+6              0.0987388
+8              0.0675419
+10              0.0437772
+12              0.0271739
+14              0.0163429
+16             0.00968983
+18             0.00574418
+20             0.00341257
+22             0.00203556
+24             0.00123137
+26            0.000756167
+28            0.000474324
+30            0.000292694
+time(s): 785
+.....................................................
+ToverR_Viterbi_v4
+Length of bits: 144              Rate: 3             NLoop: 10000
+With Convolution Code
+Soft Decoder based on probability
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0                0.20893
+2               0.155593
+4                0.10784
+6              0.0695127
+8               0.040706
+10              0.0226304
+12              0.0117523
+14             0.00565521
+16              0.0026772
+18             0.00121262
+20            0.000546528
+22            0.000246065
+24            9.79167e-05
+26            5.37037e-05
+28            2.24537e-05
+30             2.1412e-05
+time(s): 192
+.....................................................
+ToverR_Viterbi_v4
+Length of bits: 144              Rate: 3             NLoop: 10000
+With Convolution Code
+Soft Decoder based on probability
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0               0.205364
+2               0.150037
+4               0.103232
+6              0.0657275
+8              0.0382206
+10              0.0214725
+12              0.0108916
+14             0.00537465
+16             0.00243171
+18             0.00107373
+20            0.000451389
+22            0.000205556
+24            8.40278e-05
+26            3.28704e-05
+28            1.80556e-05
+30            6.59722e-06
+time(s): 193
+.....................................................
+ToverR_Viterbi_v4
+Length of bits: 144              Rate: 3             NLoop: 10000
+With Convolution Code
+Soft Decoder based on probability
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0               0.204588
+2               0.149541
+4               0.102758
+6              0.0656448
+8              0.0384802
+10              0.0211758
+12              0.0107887
+14             0.00506991
+16             0.00246227
+18             0.00110637
+20            0.000489236
+22            0.000207176
+24            9.30556e-05
+26            3.21759e-05
+28            1.40046e-05
+30            4.51389e-06
+time(s): 193
+.....................................................
+ToverR_Viterbi_v4
+Length of bits: 144              Rate: 3             NLoop: 10000
+With Convolution Code
+Soft Decoder based on probability
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0               0.276117
+2               0.220641
+4                  0.168
+6               0.124467
+8               0.100778
+10              0.0972822
+12               0.114103
+14               0.116834
+16               0.103407
+18              0.0805208
+20              0.0565719
+22              0.0401421
+24              0.0265898
+26              0.0192588
+28              0.0168966
+30              0.0162972
+time(s): 496
+.....................................................
+ToverR_Viterbi_v4
+Length of bits: 144              Rate: 3             NLoop: 10000
+With Convolution Code
+Soft Decoder based on probability
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0             0.00330463
+2             0.00202535
+4             0.00115289
+6            0.000738079
+8            0.000321181
+10            0.000229167
+12            0.000259259
+14            0.000161343
+16            0.000115046
+18             2.7662e-05
+20                      0
+22            1.40046e-05
+24                      0
+26            5.34722e-05
+28                      0
+30                      0
+time(s): 439
+.....................................................
+ToverR_Viterbi_v4
+Length of bits: 144              Rate: 3             NLoop: 10000
+With Convolution Code
+Soft Decoder based on probability
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0             0.00330336
+.....................................................
+ToverR_Viterbi_v4
+Length of bits: 144              Rate: 3             NLoop: 1000000
+With Convolution Code
+Soft Decoder based on probability
+ML
+Latin
+PhaseRotation
+FaddingChannel
+EbN0dB            BER
+0               0.205127
+2               0.150504
+4               0.102767
+6              0.0653294
+8              0.0384694
+10              0.0211176
+12              0.0108589
+14             0.00524822
+16             0.00244259
+18             0.00108684
+20            0.000472675
+22            0.000199855
+24            8.73576e-05
+26            3.62697e-05
+28            1.53113e-05
+30            6.84722e-06
+time(s): 19994

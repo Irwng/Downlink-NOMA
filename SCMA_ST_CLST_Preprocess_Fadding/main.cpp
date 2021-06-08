@@ -50,6 +50,9 @@ int main(int argc, char * argv[]){
             ML(SymAfterPP, SymAfterMPA, MasterConstell);
             DirectDecoder(SymAfterMPA, Decode, Source);
             // Compare(Decode, Source);
+            /* process bar, one # means 5% */
+            if(loop*20 % NLoop == 0) cout<<"#"<<flush;
+            if(loop == NLoop) cout<<endl;
         }
 
         BER = static_cast<double>(BER_TOTAL/(NLoop*U*NJ));

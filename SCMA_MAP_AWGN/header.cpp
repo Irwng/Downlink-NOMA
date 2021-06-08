@@ -15,6 +15,7 @@ CodeMatrix Code;                                    /* codewords after coding */
 ModuMatrix Modu;                                    /* symbols after modulation */
 MapMatrix F;                                        /* Mapping matrix */
 SymAfterMapMatrix SymAfterMap[Nj];                  /* signals after mapping, Nj*Nt*M */
+SymAfterMapMatrix SymAfterMapExp;                   /* expectation of signals after mapping, Nj*Nt*M */
 CSIMatrix H[U];                                     /* channel parameters , U*Nt*Nr */
 CSIMatrix WeightedIdentityMatrix;                   /* MMSE assistance matrix */
 PPMatrix V[U];                                      /* postprocessing matrix, Nj*Nr*M */
@@ -99,8 +100,8 @@ void InitMapMatrix(MapMatrix& map, SubConstellMatrix& subConstell,
 
         case '4':
             /* 178, 3, 4, 8 */
-            cout<<"UDM-1,2i,1+1i"<<endl;
-            outfile<<"UDM-1,2i,1+1i"<<endl;
+            cout<<"UDM-1,1i,2"<<endl;
+            outfile<<"UDM-1,1i,2"<<endl;
 
             weight = sqrt(7);
             p1 = ComplexD(1/weight, 0/weight);
@@ -324,15 +325,18 @@ void Mapper(ModuMatrix& modu, SymAfterMapMatrix* symaftermap, MapMatrix& map){
             for(int m = 0; m < M; m++){
                 symaftermap[nj](nt, m) = p0;
                 for(int j = 0; j < J; j++){
-                    symaftermap[nj](nt, m) +=  map(j, m + nt * Nt) * modu(nj, j);
+                    symaftermap[nj](nt, m) += map(j, m + nt * Nt) * modu(nj, j);
                 }
             }
         }
+
     #ifdef DebugMode
-        if(nj == 0){
-            cout<<"................symaftermap[0]................ "<<endl;
-            cout<<symaftermap[0]<<endl; 
-        }
+        // if(nj == 0){
+            cout<<"................symaftermap["<<nj<<"]................ "<<endl;
+            cout<<symaftermap[nj]<<endl; 
+            cout<<"symaftermap.conjugate().transpose(): "<<endl<<symaftermap[nj].conjugate().transpose()<<endl;
+            cout<<"SymAfterMapExp: "<<endl<<SymAfterMapExp<<endl;
+        // }
     #endif
     }
 }

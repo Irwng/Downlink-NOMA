@@ -33,8 +33,11 @@ typedef complex<double> ComplexD;
 
 /* codebook structure mode*/
 // #define NOS
+// #define NOS2
 // #define OS
-#define TS
+#define OS2
+// #define OS3
+// #define TS
 
 /**********************************
  * basic constant model parameters
@@ -49,11 +52,20 @@ constexpr double PI = 3.141592653589793;
 #ifdef NOS
     constexpr int Dr = 2;
 #endif
+#ifdef NOS2
+    constexpr int Dr = 4;
+#endif
 #ifdef OS
     constexpr int Dr = 5;
 #endif
 #ifdef TS
     constexpr int Dr = 4;
+#endif
+#ifdef OS2
+    constexpr int Dr = 5;
+#endif
+#ifdef OS3
+    constexpr int Dr = 3;
 #endif
 
 constexpr int Spoint = pow(2, Dr);
