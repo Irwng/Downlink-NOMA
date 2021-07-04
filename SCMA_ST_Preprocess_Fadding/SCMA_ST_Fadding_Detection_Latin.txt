@@ -432,3 +432,98 @@ EbN0dB          BER_Nocode            BER_Code
 27         0.000432694                   0
 30          0.00021525                   0
 time(s): 385
+.....................................................
+SCMA_ST_Fadding_Detection_Latin
+OSIC-SINR
+MMSE
+ML-LL
+NoCode, block length=600
+UDM-1,1+i,2i
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 10000
+EbN0dB          BER_Nocode            BER_Code
+0            0.167909                   0
+.....................................................
+SCMA_ST_Fadding_Detection_Latin
+MMSE
+ML-LL
+NoCode, block length=600
+UDM-1,1+i,2i
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 10000
+EbN0dB          BER_Nocode            BER_Code
+0            0.220311                   0
+3            0.152173                   0
+6           0.0947923                   0
+9           0.0540854                   0
+12           0.0290316                   0
+15           0.0151139                   0
+18          0.00770306                   0
+21          0.00389808                   0
+24          0.00196378                   0
+27         0.000977861                   0
+30         0.000504806                   0
+time(s): 296
+.....................................................
+SCMA_ST_Fadding_Detection_Latin
+ZF
+ML-LL
+NoCode, block length=600
+UDM-1,1+i,2i
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 10000
+EbN0dB          BER_Nocode            BER_Code
+0            0.237346                   0
+3             0.17354                   0
+6            0.113586                   0
+9           0.0673429                   0
+12           0.0371647                   0
+15           0.0194973                   0
+18           0.0100625                   0
+21           0.0051195                   0
+24          0.00259272                   0
+27          0.00130258                   0
+30         0.000647556                   0
+time(s): 283
+.....................................................
+SCMA_ST_Fadding_Detection_Latin
+ZF
+ML-LL
+NoCode, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 10000
+EbN0dB          BER_Nocode            BER_Code
+0            0.241205                   0
+3            0.177075                   0
+6            0.116212                   0
+9           0.0686279                   0
+12           0.0376873                   0
+15           0.0198189                   0
+18           0.0101887                   0
+21          0.00516506                   0
+24          0.00259003                   0
+27          0.00128597                   0
+30         0.000645528                   0
+time(s): 286
+.....................................................
+SCMA_ST_Fadding_Detection_Latin
+MMSE
+ML-LL
+NoCode, block length=600
+PhaseRotation-pi/5
+Latin
+Nt: 2      Nr: 2       M: 2       J: 6   NLoop: 10000
+EbN0dB          BER_Nocode            BER_Code
+0            0.227734                   0
+3            0.158435                   0
+6           0.0987696                   0
+9           0.0559673                   0
+12           0.0300078                   0
+15           0.0154649                   0
+18          0.00782744                   0
+21          0.00401992                   0
+24          0.00201225                   0
+27          0.00101542                   0
+30         0.000503139                   0
+time(s): 290

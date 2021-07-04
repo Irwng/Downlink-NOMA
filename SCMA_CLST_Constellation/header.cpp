@@ -94,13 +94,13 @@ void InitMapMatrix(MapMatrix& map, SubConstellMatrix& subConstell,
 
     /*   Nt= 0 Nt= 1  */
     map<<p1,p0,p0,p0,
-            p2,p1,p0,p0,
-            p3,p2,p1,p0,
-            p4,p3,p2,p1,
-            p5,p4,p3,p2,
-            p0,p5,p4,p3,
-            p0,p0,p5,p4,
-            p0,p0,p0,p5;
+         p2,p1,p0,p0,
+         p3,p2,p1,p0,
+         p4,p3,p2,p1,
+         p5,p4,p3,p2,
+         p0,p5,p4,p3,
+         p0,p0,p5,p4,
+         p0,p0,p0,p5;
 #endif
 
 #ifdef TS      
@@ -208,7 +208,7 @@ void InitMapMatrix(MapMatrix& map, SubConstellMatrix& subConstell,
             for(int m = 0; m < M; ++m){
                 masterConstell[i](nt, m) = p0;
                 for(int j = 0; j < J; ++j){
-                    masterConstell[i](nt, m) += map(j, nt * Nt + m) * static_cast<double>(2 * bit[j] - 1);
+                    masterConstell[i](nt, m) += map(j, nt * M + m) * static_cast<double>(2 * bit[j] - 1);
                 }
             }
         }

@@ -34,8 +34,8 @@ typedef complex<double> ComplexD;
 /* codebook structure mode*/
 // #define NOS
 // #define NOS2
-// #define OS
-#define OS2
+#define OS
+// #define OS2
 // #define OS3
 // #define TS
 
